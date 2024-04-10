@@ -1,0 +1,69 @@
+# /nolimitholdem/player.py
+    def raise(self) // times_raised + 1
+    def fold(self) // times_folded + 1
+    def check(self) // times_checked + 1
+
+# /nolimitholdem/game.py
+    def risky_reward(self):
+        """
+        Reward function to insentivise raising more often and folding less often
+        """
+
+        hands = [p.hand + self.public_cards if p.status in (PlayerStatus.ALIVE, PlayerStatus.ALLIN) else None for p in self.players]
+        chips_payoffs = self.judger.judge_game(self.players, hands)
+        payoffs = np.array(chips_payoffs) / self.big_blind
+        # flold in early rounds are punished more than folds in later rounds
+        foldPenalty = [p.timesFolded * -1/(self.round_counter+0.000001) for p in self.players]
+        # raise is awarded for the amount raised
+        raiseReward = [p.amountOfTimesRaised * p.in_chips/self.dealer.pot for p in self.players]
+        payoffs = payoffs + foldPenalty + raiseReward
+
+        return payoffs
+
+# /env/nolimitsholdem.py
+        def get_payoffs(self):
+        ''' Get the payoff of a game
+
+        Returns:
+           payoffs (list): list of payoffs
+        '''
+        # return np.array(self.game.get_payoffs())
+        return np.array(self.game.risky_reward())
+
+# /nolimitholdem/round.py
+   call player.raise(), player.fold(), player.allin() in the corresponding functions
+
+# /nolimitholdem_aggressive env and game
+
+# trainingfile:
+    # Define the base directory where logger data will be stored
+    base_dir = 'experiments/no-limit-holdem_dqn_results/'
+
+    # Generate a timestamp to create a unique subdirectory
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # Create the full path including the timestamp
+    log_dir = os.path.join(base_dir, timestamp)
+
+    # Ensure the directory exists, create it if it doesn't
+    os.makedirs(log_dir, exist_ok=True)
+
+#envs/__init__.py
+    register new environment
+
+    Poker results are generally measured in big blinds per 100 hands won. In the research community,
+     the standard measure is milli-big-blinds per hand (or per game),
+     or mbb/g, where one milli-big-blind is 1/1000 of one big blind. This is also used as a measure of exploitability,
+     the expected loss per game against a worst-case opponent.
+     A player who folds every hand will lose 750 mbb/g on average in a heads up match
+    (1000 mbb/g as big blind and 500 as small blind).
+    https://aipokertutorial.com/agent-evaluation/
+
+
+    #wat te visualiseren:
+    # amount of time raised
+    # amount of time folded
+    # amount of time checked
+    # amount of time called
+    # amount of time allin
+    # amount of rounds per game

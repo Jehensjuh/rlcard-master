@@ -1,0 +1,2699 @@
+{
+    "raw_observations": [
+        {
+            "hand": [
+                "HK",
+                "D4"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "HK",
+                "D4"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "C7",
+                "S3"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "CT",
+                "S7"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "CT",
+                "S7"
+            ],
+            "public_cards": [
+                "C4",
+                "DQ",
+                "S5",
+                "SA",
+                "S6"
+            ],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "HQ",
+                "SJ"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "HQ",
+                "SJ"
+            ],
+            "public_cards": [
+                "C4",
+                "DQ",
+                "S5",
+                "SA",
+                "S6"
+            ],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "S5",
+                "DT"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "S5",
+                "DT"
+            ],
+            "public_cards": [
+                "HQ",
+                "D2",
+                "C3",
+                "SQ",
+                "C2"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "CJ",
+                "S3"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "CJ",
+                "S3"
+            ],
+            "public_cards": [
+                "HQ",
+                "D2",
+                "C3",
+                "SQ",
+                "C2"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "C4",
+                "HQ"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "C4",
+                "HQ"
+            ],
+            "public_cards": [
+                "D5",
+                "C2",
+                "S7",
+                "H6",
+                "S5"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "HA",
+                "HJ"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "HA",
+                "HJ"
+            ],
+            "public_cards": [
+                "D5",
+                "C2",
+                "S7",
+                "H6",
+                "S5"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "C6",
+                "C4"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "C6",
+                "C4"
+            ],
+            "public_cards": [
+                "DQ",
+                "H9",
+                "HQ",
+                "HJ",
+                "C7"
+            ],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "CQ",
+                "S6"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "CQ",
+                "S6"
+            ],
+            "public_cards": [
+                "DQ",
+                "H9",
+                "HQ",
+                "HJ",
+                "C7"
+            ],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "D8",
+                "CJ"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D8",
+                "CJ"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D7",
+                "SA"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D2",
+                "S4"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D2",
+                "S4"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                2,
+                100
+            ],
+            "my_chips": 2,
+            "stakes": [
+                98,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D2",
+                "S4"
+            ],
+            "public_cards": [
+                "C2",
+                "SK",
+                "HT",
+                "DA",
+                "C6"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "D4",
+                "CA"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                2,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                98,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D4",
+                "CA"
+            ],
+            "public_cards": [
+                "C2",
+                "SK",
+                "HT",
+                "DA",
+                "C6"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "DK",
+                "ST"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "DK",
+                "ST"
+            ],
+            "public_cards": [
+                "H5",
+                "HK",
+                "S9",
+                "S5",
+                "D2"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "C2",
+                "HQ"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "C2",
+                "HQ"
+            ],
+            "public_cards": [
+                "H5",
+                "HK",
+                "S9",
+                "S5",
+                "D2"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "S7",
+                "SA"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "S7",
+                "SA"
+            ],
+            "public_cards": [
+                "DK",
+                "S3",
+                "SK",
+                "HQ",
+                "H9"
+            ],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "CJ",
+                "DQ"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "CJ",
+                "DQ"
+            ],
+            "public_cards": [
+                "DK",
+                "S3",
+                "SK",
+                "HQ",
+                "H9"
+            ],
+            "all_chips": [
+                100,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                0,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "D6",
+                "HT"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                1,
+                2
+            ],
+            "my_chips": 1,
+            "stakes": [
+                99,
+                98
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D6",
+                "HT"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                4,
+                8
+            ],
+            "my_chips": 4,
+            "stakes": [
+                96,
+                92
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D6",
+                "HT"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                16,
+                20
+            ],
+            "my_chips": 16,
+            "stakes": [
+                84,
+                80
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D6",
+                "HT"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                52,
+                56
+            ],
+            "my_chips": 52,
+            "stakes": [
+                48,
+                44
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "D6",
+                "HT"
+            ],
+            "public_cards": [
+                "D9",
+                "CA",
+                "S7"
+            ],
+            "all_chips": [
+                56,
+                56
+            ],
+            "my_chips": 56,
+            "stakes": [
+                44,
+                44
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "FLOP",
+                "value": 1
+            }
+        },
+        {
+            "hand": [
+                "D6",
+                "HT"
+            ],
+            "public_cards": [
+                "D9",
+                "CA",
+                "S7"
+            ],
+            "all_chips": [
+                56,
+                100
+            ],
+            "my_chips": 56,
+            "stakes": [
+                44,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "FLOP",
+                "value": 1
+            }
+        },
+        {
+            "hand": [
+                "D6",
+                "HT"
+            ],
+            "public_cards": [
+                "D9",
+                "CA",
+                "S7",
+                "D8",
+                "S6"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        },
+        {
+            "hand": [
+                "H9",
+                "C5"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                4,
+                2
+            ],
+            "my_chips": 2,
+            "stakes": [
+                96,
+                98
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "H9",
+                "C5"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                16,
+                8
+            ],
+            "my_chips": 8,
+            "stakes": [
+                84,
+                92
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "H9",
+                "C5"
+            ],
+            "public_cards": [],
+            "all_chips": [
+                52,
+                20
+            ],
+            "my_chips": 20,
+            "stakes": [
+                48,
+                80
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "PREFLOP",
+                "value": 0
+            }
+        },
+        {
+            "hand": [
+                "H9",
+                "C5"
+            ],
+            "public_cards": [
+                "D9",
+                "CA",
+                "S7"
+            ],
+            "all_chips": [
+                56,
+                56
+            ],
+            "my_chips": 56,
+            "stakes": [
+                44,
+                44
+            ],
+            "current_player": 1,
+            "stage": {
+                "name": "FLOP",
+                "value": 1
+            }
+        },
+        {
+            "hand": [
+                "H9",
+                "C5"
+            ],
+            "public_cards": [
+                "D9",
+                "CA",
+                "S7",
+                "D8",
+                "S6"
+            ],
+            "all_chips": [
+                100,
+                100
+            ],
+            "my_chips": 100,
+            "stakes": [
+                0,
+                0
+            ],
+            "current_player": 0,
+            "stage": {
+                "name": "RIVER",
+                "value": 3
+            }
+        }
+    ],
+    "legal_actions": [
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            }
+        ]
+    ],
+    "recorded_actions": [
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "FOLD",
+                "value": 0
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ],
+        [
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "RAISE_POT",
+                "value": 3
+            },
+            {
+                "name": "RAISE_HALF_POT",
+                "value": 2
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            },
+            {
+                "name": "ALL_IN",
+                "value": 4
+            },
+            {
+                "name": "CHECK_CALL",
+                "value": 1
+            }
+        ]
+    ]
+}
