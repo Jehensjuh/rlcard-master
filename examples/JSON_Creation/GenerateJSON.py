@@ -136,5 +136,5 @@ if __name__ == '__main__':
         "recorded_actions": grouped_recorded_actions
     }
 
-    with open('C:/Users/jensv/OneDrive/Bureaublad/MasterProject/rlcard-master/examples/JSON_Creation/GameData.json', 'w') as json_file:
+    with open('GameData.json', 'w') as json_file:
         json.dump(combined_data, json_file, indent=4, cls=CustomEncoder)
