@@ -11,7 +11,7 @@ from rlcard.games.nolimitholdem import Action
 
 def play_games(num_games):
     # Load the trained model
-    agent = torch.load('../experiments/no-limit-holdem_dqn_results/20240410_131103/model.pth')
+    agent = torch.load('../experiments/no-limit-holdem_dqn_results/Rational/model.pth')
 
     # Make an environment for playing
     env = rlcard.make('no-limit-holdem', config={'seed': 42})
