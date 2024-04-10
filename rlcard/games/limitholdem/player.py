@@ -9,6 +9,15 @@ class PlayerStatus(Enum):
     ALLIN = 2
 
 
+class Stage(Enum):
+    PREFLOP = 0
+    FLOP = 1
+    TURN = 2
+    RIVER = 3
+    END_HIDDEN = 4
+    SHOWDOWN = 5
+
+
 class LimitHoldemPlayer:
 
     def __init__(self, player_id, np_random):
@@ -43,20 +52,28 @@ class LimitHoldemPlayer:
 
     def newGet_state(self, public_cards, all_chips, legal_actions, stage):
         # pc.calculate(community_cards,exact,amountofsimulations,input_file,(hand1,hand2),printoutresults)
-        odds = 0
-        # pre-flop
-        if stage == 0:
-            odds = pc.calculate(None, True, 1, None, [self.hand[0], self.hand[1], "?", "?"], False)
-        # flop
-        elif stage == 1:
-            odds = pc.calculate(public_cards, True, 1, None, [self.hand[0], self.hand[1], "?", "?"], False)
-        # turn
-        elif stage == 2:
-            odds = pc.calculate(public_cards, True, 1, None, [self.hand[0], self.hand[1], public_cards[0], "?"], False)
-        # river
-        elif stage == 3:
-            odds = pc.calculate(public_cards, True, 1, None, [self.hand[0], self.hand[1], public_cards[0], public_cards[1]], False)
+        odds = []
+        public_cards_s = []
+        # create a list of the strings of the public cars
+        if public_cards:
+            public_cards_s = [c.get_index() for c in public_cards]
 
+        # pre-flop
+        # if stage == stage.PREFLOP:
+        #     odds = pc.calculate(None, True, 1, None, [self.hand[0].get_index(), self.hand[1].get_index(), "?", "?"],
+        #                         False)
+        # flop
+        if stage == stage.FLOP:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [self.hand[0].get_index(), self.hand[1].get_index(), "?", "?"], False)
+        # turn
+        elif stage == stage.TURN:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [self.hand[0].get_index(), self.hand[1].get_index(), "?", "?"], False)
+        # river
+        elif stage == stage.RIVER:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [self.hand[0].get_index(), self.hand[1].get_index(), "?", "?"], False)
 
         return {
             'hand': [c.get_index() for c in self.hand],
@@ -64,7 +81,41 @@ class LimitHoldemPlayer:
             'all_chips': all_chips,
             'my_chips': self.in_chips,
             'legal_actions': legal_actions,
-            'odds': odds[1]
+            'odds': odds
+        }
+
+    def newGet_state_training(self, public_cards, all_chips, legal_actions, stage, opponent_hand):
+        # pc.calculate(community_cards,exact,amountofsimulations,input_file,(hand1,hand2),printoutresults)
+        odds = []
+        public_cards_s = []
+        # create a list of the strings of the public cars
+        if public_cards:
+            public_cards_s = [c.get_index() for c in public_cards]
+
+        # pre-flop
+        if stage == stage.PREFLOP:
+            odds = pc.calculate(None, True, 1, None, [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()],
+                                 False)
+        # flop
+        if stage == stage.FLOP:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
+        # turn
+        elif stage == stage.TURN:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
+        # river
+        elif stage == stage.RIVER:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
+
+        return {
+            'hand': [c.get_index() for c in self.hand],
+            'public_cards': [c.get_index() for c in public_cards],
+            'all_chips': all_chips,
+            'my_chips': self.in_chips,
+            'legal_actions': legal_actions,
+            'odds': odds
         }
 
     def get_state(self, public_cards, all_chips, legal_actions):
@@ -78,7 +129,6 @@ class LimitHoldemPlayer:
         Returns:
             (dict): The state of the player
         """
-
 
         return {
             'hand': [c.get_index() for c in self.hand],
