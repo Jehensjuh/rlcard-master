@@ -118,6 +118,16 @@ class LimitHoldemPlayer:
             'odds': odds
         }
 
+    def newGet_state_givenOdds(self, public_cards, all_chips, legal_actions, odds):
+        return {
+            'hand': [c.get_index() for c in self.hand],
+            'public_cards': [c.get_index() for c in public_cards],
+            'all_chips': all_chips,
+            'my_chips': self.in_chips,
+            'legal_actions': legal_actions,
+            'odds': odds
+        }
+
     def get_state(self, public_cards, all_chips, legal_actions):
         """
         Encode the state for the player
