@@ -197,6 +197,7 @@ class NolimitholdemGame(Game):
         Returns:
             (dict): The state of the player
         """
+        # test
         self.dealer.pot = np.sum([player.in_chips for player in self.players])
 
         chips = [self.players[i].in_chips for i in range(self.num_players)]
