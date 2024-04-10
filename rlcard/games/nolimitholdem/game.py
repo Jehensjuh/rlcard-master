@@ -200,20 +200,20 @@ class NolimitholdemGame(Game):
 
         # pre-flop
         if stage == stage.PREFLOP:
-            odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[0][0].get_index(),  player_hands[0][1].get_index()],
+            odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
                                  False)
         # flop
         if stage == stage.FLOP:
             odds = pc.calculate(public_cards_s, True, 1, None,
-                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[0][0].get_index(),  player_hands[0][1].get_index()], False)
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
         # turn
         elif stage == stage.TURN:
             odds = pc.calculate(public_cards_s, True, 1, None,
-                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[0][0].get_index(),  player_hands[0][1].get_index()], False)
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
         # river
         elif stage == stage.RIVER:
             odds = pc.calculate(public_cards_s, True, 1, None,
-                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[0][0].get_index(),  player_hands[0][1].get_index()], False)
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
         return odds
     def get_state(self, player_id):
         """
