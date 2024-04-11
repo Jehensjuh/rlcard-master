@@ -196,7 +196,6 @@ class NolimitholdemGame(Game):
         odds = [0,0,0]
         public_cards_s = []
         stage = self.stage
-        print("calculating odds in stage:" + str(stage))
         # create a list of the strings of the public cars
         if public_cards:
             public_cards_s = [c.get_index() for c in public_cards]
