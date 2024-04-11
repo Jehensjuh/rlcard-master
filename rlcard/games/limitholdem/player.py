@@ -88,6 +88,7 @@ class LimitHoldemPlayer:
         # pc.calculate(community_cards,exact,amountofsimulations,input_file,(hand1,hand2),printoutresults)
         odds = []
         public_cards_s = []
+        print("calculating odds")
         # create a list of the strings of the public cars
         if public_cards:
             public_cards_s = [c.get_index() for c in public_cards]
