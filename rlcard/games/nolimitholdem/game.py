@@ -196,17 +196,16 @@ class NolimitholdemGame(Game):
         odds = [0,0,0]
         public_cards_s = []
         stage = self.stage
-        print("calculating odds in stage:" + str(stage))
         # create a list of the strings of the public cars
         if public_cards:
             public_cards_s = [c.get_index() for c in public_cards]
 
         # pre-flop
-        # if stage == stage.PREFLOP:
-        #     odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
-        #                          False)
+        if stage == stage.PREFLOP:
+            odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
+                                 False)
         # flop
-        if stage == stage.FLOP:
+        elif stage == stage.FLOP:
            odds = pc.calculate(public_cards_s, True, 1, None,
                                 [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
         # turn
