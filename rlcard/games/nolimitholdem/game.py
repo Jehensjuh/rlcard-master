@@ -191,6 +191,7 @@ class NolimitholdemGame(Game):
 
 
     def calculate_odds(self):
+
         player_hands = [player.hand for player in self.players]
         public_cards = self.public_cards
         odds = [0,0,0]
