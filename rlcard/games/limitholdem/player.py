@@ -96,18 +96,18 @@ class LimitHoldemPlayer:
         if stage == stage.PREFLOP:
             odds = pc.calculate(None, True, 1, None, [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()],
                                  False)
-        # flop
-        if stage == stage.FLOP:
-            odds = pc.calculate(public_cards_s, True, 1, None,
-                                [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
-        # turn
-        elif stage == stage.TURN:
-            odds = pc.calculate(public_cards_s, True, 1, None,
-                                [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
-        # river
-        elif stage == stage.RIVER:
-            odds = pc.calculate(public_cards_s, True, 1, None,
-                                [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
+        # # flop
+        # if stage == stage.FLOP:
+        #     odds = pc.calculate(public_cards_s, True, 1, None,
+        #                         [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
+        # # turn
+        # elif stage == stage.TURN:
+        #     odds = pc.calculate(public_cards_s, True, 1, None,
+        #                         [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
+        # # river
+        # elif stage == stage.RIVER:
+        #     odds = pc.calculate(public_cards_s, True, 1, None,
+        #                         [self.hand[0].get_index(), self.hand[1].get_index(), opponent_hand[0][0].get_index(),  opponent_hand[0][1].get_index()], False)
 
         return {
             'hand': [c.get_index() for c in self.hand],

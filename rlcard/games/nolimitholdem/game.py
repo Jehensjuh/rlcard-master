@@ -37,6 +37,8 @@ class NolimitholdemGame(Game):
         # If None, the dealer will be randomly chosen
         self.dealer_id = None
 
+        self.odds = []
+
     def configure(self, game_config):
         """
         Specify some game specific parameters, such as number of players, initial chips, and dealer id.
@@ -234,8 +236,8 @@ class NolimitholdemGame(Game):
         for player in self.players:
             if player.player_id != player_id:
                 hole_cards.append(player.hand)
-        odds = self.calculate_odds()
-        state = self.players[player_id].newGet_state_givenOdds(self.public_cards, chips, legal_actions,odds)
+        # odds = self.calculate_odds()
+        state = self.players[player_id].newGet_state_training(self.public_cards, chips, legal_actions, self.stage, hole_cards)
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot
