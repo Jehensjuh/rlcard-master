@@ -202,11 +202,11 @@ class NolimitholdemGame(Game):
             public_cards_s = [c.get_index() for c in public_cards]
 
         # pre-flop
-        if stage == stage.PREFLOP:
-            odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
-                                 False)
+        # if stage == stage.PREFLOP:
+        #     odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
+        #                          False)
         # flop
-        elif stage == stage.FLOP:
+        if stage == stage.FLOP:
            odds = pc.calculate(public_cards_s, True, 1, None,
                                 [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
         # turn
