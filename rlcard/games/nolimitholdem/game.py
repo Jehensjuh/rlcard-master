@@ -193,7 +193,7 @@ class NolimitholdemGame(Game):
     def calculate_odds(self):
         player_hands = [player.hand for player in self.players]
         public_cards = self.public_cards
-        odds = []
+        odds = [0,0,0]
         public_cards_s = []
         stage = self.stage
         print("calculating odds in stage:" + str(stage))
@@ -202,21 +202,21 @@ class NolimitholdemGame(Game):
             public_cards_s = [c.get_index() for c in public_cards]
 
         # pre-flop
-        if stage == stage.PREFLOP:
-            odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
-                                 False)
-        # # flop
-        # if stage == stage.FLOP:
-        #    odds = pc.calculate(public_cards_s, True, 1, None,
-        #                         [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
-        # # turn
-        # elif stage == stage.TURN:
-        #     odds = pc.calculate(public_cards_s, True, 1, None,
-        #                         [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
-        # # river
-        # elif stage == stage.RIVER:
-        #     odds = pc.calculate(public_cards_s, True, 1, None,
-        #                         [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
+        # if stage == stage.PREFLOP:
+        #     odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
+        #                          False)
+        # flop
+        if stage == stage.FLOP:
+           odds = pc.calculate(public_cards_s, True, 1, None,
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
+        # turn
+        elif stage == stage.TURN:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
+        # river
+        elif stage == stage.RIVER:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
         return odds
     def get_state(self, player_id):
         """
@@ -237,8 +237,8 @@ class NolimitholdemGame(Game):
         for player in self.players:
             if player.player_id != player_id:
                 hole_cards.append(player.hand)
-        # odds = self.calculate_odds()
-        state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
+        odds = self.calculate_odds()
+        state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, odds[player_id+1])
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot
