@@ -69,7 +69,7 @@ class NolimitholdemEnv(Env):
         obs[52] = float(my_chips)
         obs[53] = float(np.max(all_chips))
         extracted_state['obs'] = obs
-
+        state['odds'] = self.game.calculate_odds()
         extracted_state['raw_obs'] = state
         extracted_state['raw_legal_actions'] = [a for a in state['legal_actions']]
         extracted_state['action_record'] = self.action_recorder
@@ -115,6 +115,7 @@ class NolimitholdemEnv(Env):
         state['hand_cards'] = [[c.get_index() for c in self.game.players[i].hand] for i in range(self.num_players)]
         state['current_player'] = self.game.game_pointer
         state['legal_actions'] = self.game.get_legal_actions()
+        state['odds'] = self.game.calculate_odds()
         return state
 
 
