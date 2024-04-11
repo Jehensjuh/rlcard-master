@@ -67,7 +67,7 @@ class NolimitholdemEnv(Env):
         obs = np.zeros(54)
         obs[idx] = 1
         obs[52] = float(my_chips)
-        obs[53] = float(max(all_chips))
+        obs[53] = float(np.max(all_chips))
         extracted_state['obs'] = obs
 
         extracted_state['raw_obs'] = state
