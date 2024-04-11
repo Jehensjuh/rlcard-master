@@ -196,6 +196,7 @@ class NolimitholdemGame(Game):
         odds = []
         public_cards_s = []
         stage = self.stage
+        print("calculating odds in stage:" + str(stage))
         # create a list of the strings of the public cars
         if public_cards:
             public_cards_s = [c.get_index() for c in public_cards]
@@ -236,8 +237,8 @@ class NolimitholdemGame(Game):
         for player in self.players:
             if player.player_id != player_id:
                 hole_cards.append(player.hand)
-        # odds = self.calculate_odds()
-        state = self.players[player_id].newGet_state_training(self.public_cards, chips, legal_actions, self.stage, hole_cards)
+        odds = self.calculate_odds()
+        state = self.players[player_id].newGet_state_givenOdds(self.public_cards, chips, legal_actions, odds)
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot
