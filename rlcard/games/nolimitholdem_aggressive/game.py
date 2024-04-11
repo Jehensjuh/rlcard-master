@@ -10,6 +10,8 @@ from rlcard.games.nolimitholdem_aggressive import Player
 from rlcard.games.nolimitholdem_aggressive import Judger
 from rlcard.games.nolimitholdem_aggressive import Round, Action
 
+from rlcard.calculator import parallel_holdem_calc as pc
+
 
 class Stage(Enum):
     PREFLOP = 0
@@ -186,6 +188,34 @@ class NolimitholdemGame(Game):
         state = self.get_state(self.game_pointer)
 
         return state, self.game_pointer
+
+    def calculate_odds(self):
+        player_hands = [player.hand for player in self.players]
+        public_cards = self.public_cards
+        odds = []
+        public_cards_s = []
+        stage = self.stage
+        # create a list of the strings of the public cars
+        if public_cards:
+            public_cards_s = [c.get_index() for c in public_cards]
+
+        # pre-flop
+        if stage == stage.PREFLOP:
+            odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
+                                 False)
+        # flop
+        if stage == stage.FLOP:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
+        # turn
+        elif stage == stage.TURN:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
+        # river
+        elif stage == stage.RIVER:
+            odds = pc.calculate(public_cards_s, True, 1, None,
+                                [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
+        return odds
 
     def get_state(self, player_id):
         """
