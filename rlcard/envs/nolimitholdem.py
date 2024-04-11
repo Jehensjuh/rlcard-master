@@ -115,6 +115,7 @@ class NolimitholdemEnv(Env):
         state['hand_cards'] = [[c.get_index() for c in self.game.players[i].hand] for i in range(self.num_players)]
         state['current_player'] = self.game.game_pointer
         state['legal_actions'] = self.game.get_legal_actions()
+        state['odds'] = self.game.calculate_odds()
         return state
 
 
