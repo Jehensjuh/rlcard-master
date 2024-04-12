@@ -30,7 +30,6 @@ def play_games(num_games):
     return all_trajectories
 
 
-
 class CustomEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, rlcard.games.nolimitholdem.game.Stage):
@@ -40,6 +39,8 @@ class CustomEncoder(json.JSONEncoder):
             return {'player': player_id, 'action': {'name': action.name, 'value': action.value}}
         elif isinstance(obj, Action):
             return {'name': obj.name, 'value': obj.value}
+        elif isinstance(obj, np.int32):
+            return int(obj)  # Convert np.int32 to Python int
         return super().default(obj)
 
 
@@ -53,10 +54,15 @@ def convert_to_json_serializable(data):
         converted_dict = {}
         for k, v in data.items():
             if k == 'my_chips' and isinstance(v, np.int32):  # Check for 'my_chips' key
-                 v = int(v)  # Convert int32 numpy scalar to Python int
+                v = int(v)  # Convert int32 numpy scalar to Python int
 
             if k == 'all_chips':  # Check for specific keys
-                v = [int(item) if isinstance(item, np.int32) else item for item in v]
+                if isinstance(v, np.int64):
+                    v = int(v)  # Convert numpy.int64 to Python int
+                elif isinstance(v, np.int32):
+                    v = int(v)
+                else:
+                    v = [int(item) if isinstance(item, np.int32) else item for item in v]
 
             if k == 'stakes':
                 if isinstance(v, np.ndarray):
@@ -79,11 +85,7 @@ def convert_to_json_serializable(data):
     return data
 
 
-
-
-
 if __name__ == '__main__':
-
     # Play 10 games and get trajectories
     trajectories = play_games(10)
 
@@ -92,9 +94,10 @@ if __name__ == '__main__':
     legal_actions = []
     recorded_actions = []
     game_actions = {}
+
     # Initialize a dictionary to store raw observations per game
     raw_observations_per_game = {}
-    game = 0 # Game counter
+    game = 0  # Game counter
     counter = 0
 
     for player_trajectories in trajectories:
@@ -114,27 +117,38 @@ if __name__ == '__main__':
                     # Convert int32 arrays to Python lists and filter out 'pot'
                     raw_observation.pop('legal_actions', None)
                     raw_observation.pop('pot', None)
+                    # raw_observation['game'] = game
                     raw_observation = convert_to_json_serializable(raw_observation)
                     # raw_observations.append(raw_observation)
                     raw_observations_per_game[game].append(raw_observation)
 
+                # Extract myObs data
+                myob = transition.get('myObs')
+                myob = convert_to_json_serializable(myob)
+                myObs = {}
+                myObs['chips'] = myob['chips']
+                myObs['total_chips'] = myob['total_chips']
+                myObs['public_card'] = myob['public_card']
+                myObs['hand_cards'] = myob['hand_cards']
+                myObs['current_player'] = myob['current_player']
+                myObs['odds'] = myob['odds']
+                # Add myObs to the raw observation
+                raw_observation['myObs'] = myObs
 
-                legal_action = transition.get('raw_legal_actions')
-                if legal_action is not None:
-                    legal_actions.append(legal_action)
         counter += 1
-        if(counter % 2 == 0):
+        if counter % 2 == 0:
             game += 1
+
     grouped_recorded_actions = [{"game": game, "actions": actions} for game, actions in game_actions.items()]
     grouped_raw_observations = [{"game": game_num, "observations": observations} for game_num, observations in
                                 raw_observations_per_game.items()]
+
     # Combine all data into a single dictionary
     combined_data = {
-        # "raw_observations": raw_observations,
         "raw_observations": grouped_raw_observations,
         "legal_actions": legal_actions,
         "recorded_actions": grouped_recorded_actions
     }
 
-    with open('GameData.json', 'w') as json_file:
+    with open('TestData.json', 'w') as json_file:
         json.dump(combined_data, json_file, indent=4, cls=CustomEncoder)
