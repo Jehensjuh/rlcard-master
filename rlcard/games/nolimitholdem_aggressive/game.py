@@ -297,7 +297,9 @@ class NolimitholdemGame(Game):
         # Calculate the reward based on chips won or lost compared to the big blind
         rewards = chips_won_or_lost / self.big_blind
 
-        odds = float(self.odds)
+        # Convert each element of self.odds to a float
+        odds = [float(odds_value) for odds_value in self.odds]
+
         # Define parameters for adjusting rewards
         fold_penalty = 5
         raise_reward = 0
