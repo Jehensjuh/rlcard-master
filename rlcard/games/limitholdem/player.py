@@ -31,12 +31,53 @@ class LimitHoldemPlayer:
         self.player_id = player_id
         self.hand = []
         self.status = PlayerStatus.ALIVE
+        self.amountOfTimesRaised_half = 0
+        self.amountOfTimesRaised_full = 0
         self.amountOfTimesRaised = 0
         self.amountOfTimesAlin = 0
         self.amountOfTimesFolded = 0
+        self.amountOfTimesCalled = 0
+        self.amountOfTimesFoldedPreflop = 0
+        self.amountOfTimesRaised_halfPreflop = 0
+        self.amountOfTimesRaised_fullPreflop = 0
+        self.amountOfTimesAllinPreflop = 0
+        self.amountOfTimesCalledPreflop = 0
 
         # The chips that this player has put in until now
         self.in_chips = 0
+
+    def raise_half(self):
+        self.amountOfTimesRaised_half += 1
+        self.amountOfTimesRaised += 1
+
+    def raise_full(self):
+        self.amountOfTimesRaised_full += 1
+        self.amountOfTimesRaised += 1
+
+    def all_in(self):
+        self.amountOfTimesAlin += 1
+
+    def fold(self):
+        self.amountOfTimesFolded += 1
+
+    def call(self):
+        self.amountOfTimesCalled += 1
+
+    def fold_preflop(self):
+        self.amountOfTimesFoldedPreflop += 1
+
+    def raise_half_preflop(self):
+        self.amountOfTimesRaised_halfPreflop += 1
+
+    def raise_full_preflop(self):
+        self.amountOfTimesRaised_fullPreflop += 1
+
+    def all_in_preflop(self):
+        self.amountOfTimesAllinPreflop += 1
+
+    def call_preflop(self):
+        self.amountOfTimesCalledPreflop += 1
+
 
     def calculate_odds(self, public_cards):
         """

@@ -1,6 +1,5 @@
 from rlcard.games.limitholdem import Player
-
-
+from enum import Enum
 class NolimitholdemPlayer(Player):
     def __init__(self, player_id, init_chips, np_random):
         """
@@ -22,12 +21,4 @@ class NolimitholdemPlayer(Player):
         self.in_chips += quantity
         self.remained_chips -= quantity
 
-    def raised(self):
-        self.timesRaised += 1
-
-    def folded(self):
-        self.timesFolded += 1
-
-    def allIn(self):
-        self.timesAllIn += 1
 
