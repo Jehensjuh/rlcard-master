@@ -242,7 +242,7 @@ class NolimitholdemGame(Game):
         legal_actions = self.get_legal_actions()
         self.odds = self.calculate_odds()
         state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions,
-                                                               self.odds[player_id])
+                                                               self.odds[player_id+1])
 
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
@@ -304,7 +304,7 @@ class NolimitholdemGame(Game):
         # This is to encourage bets and raises when the odds are good and to discourage folding
 
 
-
+        # odds shows: [ties player1 player2]
         odds = [float(odds_value) for odds_value in self.odds]
 
         # Define parameters for adjusting rewards
@@ -324,29 +324,29 @@ class NolimitholdemGame(Game):
 
         # Rewards using odds:
         for idx, p in enumerate(self.players):
-            if odds[idx] >= 0.700:
+            if odds[idx +1] >= 0.700:
                 rewards[idx] += allin_reward * p.timesAllIn
                 rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
                 rewards[idx] = rewards[idx] * relative_bets[idx]
-            elif odds[idx] >= 0.500:
+            elif odds[idx +1] >= 0.500:
                 rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
                 rewards[idx] -= allin_reward * p.timesAllIn
                 rewards[idx] = rewards[idx] * (relative_bets[idx]/(p.timesAllIn*allin_reward))
-            elif odds[idx] >= 0.400:
+            elif odds[idx +1] >= 0.400:
                 rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
                 rewards[idx] -= allin_reward * p.timesAllIn
                 rewards[idx] = rewards[idx] * (relative_bets[idx]/(p.amountOfTimesRaised_full+p.amountOfTimesAlin*allin_reward))
-            elif odds[idx] >= 0.100:
+            elif odds[idx +1] >= 0.100:
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
                 rewards[idx] -= allin_reward * p.timesAllIn
-            elif odds[idx] <= 0.100:
+            elif odds[idx +1] <= 0.100:
                 rewards[idx] += fold_penalty * p.timesFolded
                 rewards[idx] -= allin_reward * p.timesAllIn
             rewards[idx] += preflop_call_reward * p.amountOfTimesCalledPreflop + preflop_raise_halfReward * p.amountOfTimesRaised_halfPreflop + preflop_raise_fullReward * p.amountOfTimesRaised_fullPreflop
