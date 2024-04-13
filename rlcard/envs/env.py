@@ -30,7 +30,7 @@ class Env(object):
         # Game specific configurations
         # Currently only support blackjack、limit-holdem、no-limit-holdem
         # TODO support game configurations for all the games
-        supported_envs = ['blackjack', 'leduc-holdem', 'limit-holdem', 'no-limit-holdem', 'no-limit-holdem-aggressive']
+        supported_envs = ['blackjack', 'leduc-holdem', 'limit-holdem', 'no-limit-holdem', 'no-limit-holdem-aggressive', 'no-limit-holdem-defensive']
         if self.name in supported_envs:
             _game_config = self.default_game_config.copy()
             for key in config:
@@ -80,7 +80,7 @@ class Env(object):
 
         self.timestep += 1
         # Record the action for human interface
-        self.action_recorder.append((self.get_player_id(), action))
+        self.action_recorder.append((self.get_player_id(), action, self.game.stage))
         next_state, player_id = self.game.step(action)
 
         return self._extract_state(next_state), player_id
