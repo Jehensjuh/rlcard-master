@@ -69,7 +69,7 @@ class NolimitholdemRound:
         else:
             self.raised = [0 for _ in range(self.num_players)]
 
-    def proceed_round(self, players, action):
+    def proceed_round(self, players, action, stage):
         """
         Call functions from other classes to keep one round running
 
