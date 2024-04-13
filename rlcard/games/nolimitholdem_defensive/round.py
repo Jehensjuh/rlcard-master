@@ -4,7 +4,13 @@ from enum import Enum
 
 from rlcard.games.limitholdem import PlayerStatus
 
-
+class Stage(Enum):
+    PREFLOP = 0
+    FLOP = 1
+    TURN = 2
+    RIVER = 3
+    END_HIDDEN = 4
+    SHOWDOWN = 5
 class Action(Enum):
     FOLD = 0
     CHECK_CALL = 1
@@ -81,12 +87,18 @@ class NolimitholdemRound:
             self.raised[self.game_pointer] = max(self.raised)
             player.bet(chips=diff)
             self.not_raise_num += 1
-            player.checked()
+            if(stage == Stage.PREFLOP):
+                player.call_preflop()
+            else:
+                player.call()
 
         elif action == Action.ALL_IN:
             all_in_quantity = player.remained_chips
             self.raised[self.game_pointer] = all_in_quantity + self.raised[self.game_pointer]
-            player.allIn()
+            if(stage == Stage.PREFLOP):
+                player.all_in_preflop()
+            else:
+                player.all_in()
             player.bet(chips=all_in_quantity)
 
             self.not_raise_num = 1
@@ -94,19 +106,28 @@ class NolimitholdemRound:
         elif action == Action.RAISE_POT:
             self.raised[self.game_pointer] += self.dealer.pot
             player.bet(chips=self.dealer.pot)
-            player.raised()
+            if(stage == Stage.PREFLOP):
+                player.raise_full_preflop()
+            else:
+                player.raise_full()
             self.not_raise_num = 1
 
         elif action == Action.RAISE_HALF_POT:
             quantity = int(self.dealer.pot / 2)
             self.raised[self.game_pointer] += quantity
             player.bet(chips=quantity)
-            player.raised()
+            if (stage == Stage.PREFLOP):
+                player.raise_half_preflop()
+            else:
+                player.raise_half()
             self.not_raise_num = 1
 
         elif action == Action.FOLD:
             player.status = PlayerStatus.FOLDED
-            player.folded()
+            if (stage == Stage.PREFLOP):
+                player.fold_preflop()
+            else:
+                player.fold()
 
         if player.remained_chips < 0:
             raise Exception("Player in negative stake")

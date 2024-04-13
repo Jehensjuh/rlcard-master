@@ -80,6 +80,7 @@ class NolimitholdemEnv(Env):
         myObs['public_card'] = [c.get_index() for c in self.game.public_cards] if self.game.public_cards else None
         myObs['hand_cards'] = [[c.get_index() for c in self.game.players[i].hand] for i in range(self.num_players)]
         myObs['current_player'] = self.game.game_pointer
+        myObs['recorded_action'] = self.action_recorder
         myObs['odds'] = self.game.odds
         extracted_state['myObs'] = myObs
         return extracted_state

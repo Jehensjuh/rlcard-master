@@ -67,22 +67,30 @@ class NolimitholdemEnv(Env):
         obs = np.zeros(54)
         obs[idx] = 1
         obs[52] = float(my_chips)
-        obs[53] = float(max(all_chips))
+        obs[53] = float(np.max(all_chips))
         extracted_state['obs'] = obs
 
         extracted_state['raw_obs'] = state
         extracted_state['raw_legal_actions'] = [a for a in state['legal_actions']]
         extracted_state['action_record'] = self.action_recorder
 
+        myObs = {}
+        myObs['chips'] = [self.game.players[i].in_chips for i in range(self.num_players)]
+        myObs['total_chips'] = state['all_chips']
+        myObs['public_card'] = [c.get_index() for c in self.game.public_cards] if self.game.public_cards else None
+        myObs['hand_cards'] = [[c.get_index() for c in self.game.players[i].hand] for i in range(self.num_players)]
+        myObs['current_player'] = self.game.game_pointer
+        myObs['recorded_action'] = self.action_recorder
+        myObs['odds'] = self.game.odds
+        extracted_state['myObs'] = myObs
         return extracted_state
-
     def get_payoffs(self):
         ''' Get the payoff of a game
 
         Returns:
            payoffs (list): list of payoffs
         '''
-        return np.array(self.game.get_payoffs())
+        return np.array(self.game.safe_reward())
         # return np.array(self.game.risky_reward())
 
     def _decode_action(self, action_id):
