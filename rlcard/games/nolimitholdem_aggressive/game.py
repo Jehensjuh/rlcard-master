@@ -297,7 +297,14 @@ class NolimitholdemGame(Game):
         # Calculate the reward based on chips won or lost compared to the big blind
         rewards = chips_won_or_lost / self.big_blind
 
-        # Convert each element of self.odds to a float
+        # Calculate the relative amount bet for each player
+        relative_bets = np.array([p.in_chips / self.dealer.pot for p in self.players])
+
+        # Reward is (amount of big blinds one or lost + all rewards based on odds and what was done)*relative amount bet
+        # This is to encourage bets and raises when the odds are good and to discourage folding
+
+
+
         odds = [float(odds_value) for odds_value in self.odds]
 
         # Define parameters for adjusting rewards
@@ -322,16 +329,19 @@ class NolimitholdemGame(Game):
                 rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
+                rewards[idx] = rewards[idx] * relative_bets[idx]
             elif odds[idx] >= 0.500:
                 rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
                 rewards[idx] -= allin_reward * p.timesAllIn
+                rewards[idx] = rewards[idx] * (relative_bets[idx]/(p.timesAllIn*allin_reward))
             elif odds[idx] >= 0.400:
                 rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
                 rewards[idx] -= allin_reward * p.timesAllIn
+                rewards[idx] = rewards[idx] * (relative_bets[idx]/(p.amountOfTimesRaised_full+p.amountOfTimesAlin*allin_reward))
             elif odds[idx] >= 0.100:
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= fold_penalty * p.timesFolded
@@ -341,7 +351,6 @@ class NolimitholdemGame(Game):
                 rewards[idx] -= allin_reward * p.timesAllIn
             rewards[idx] += preflop_call_reward * p.amountOfTimesCalledPreflop + preflop_raise_halfReward * p.amountOfTimesRaised_halfPreflop + preflop_raise_fullReward * p.amountOfTimesRaised_fullPreflop
             rewards[idx] -= (preflop_fold_penalty * p.amountOfTimesFoldedPreflop + preflop_allin_reward * p.amountOfTimesAllinPreflop)
-
         return rewards
 
     @staticmethod
