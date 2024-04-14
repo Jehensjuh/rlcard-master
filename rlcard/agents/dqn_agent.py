@@ -95,12 +95,17 @@ class DQNAgent(object):
         self.batch_size = batch_size
         self.num_actions = num_actions
         self.train_every = train_every
-
+        self.state_shape = state_shape
         # Torch device
         if device is None:
             self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
         else:
             self.device = device
+
+
+        # update stateshape:
+        extra_obs_size = 1
+        updated_state_shape = [state_shape[0] + extra_obs_size]
 
         # Total timesteps
         self.total_t = 0
@@ -112,9 +117,9 @@ class DQNAgent(object):
         self.epsilons = np.linspace(epsilon_start, epsilon_end, epsilon_decay_steps)
 
         # Create estimators
-        self.q_estimator = Estimator(num_actions=num_actions, learning_rate=learning_rate, state_shape=state_shape, \
+        self.q_estimator = Estimator(num_actions=num_actions, learning_rate=learning_rate, state_shape=updated_state_shape, \
             mlp_layers=mlp_layers, device=self.device)
-        self.target_estimator = Estimator(num_actions=num_actions, learning_rate=learning_rate, state_shape=state_shape, \
+        self.target_estimator = Estimator(num_actions=num_actions, learning_rate=learning_rate, state_shape=updated_state_shape, \
             mlp_layers=mlp_layers, device=self.device)
 
         # Create replay memory

@@ -315,9 +315,9 @@ class NolimitholdemGame(Game):
 
         preflop_raise_halfReward = 1
         preflop_raise_fullReward = 2
-        preflop_allin_reward = 5
+        preflop_allin_reward = 100
         preflop_call_reward = 10
-        preflop_fold_penalty = 10
+        preflop_fold_penalty = 100
 
         # Rewards using odds:
         for idx, p in enumerate(self.players):

@@ -317,9 +317,9 @@ class NolimitholdemGame(Game):
 
         preflop_raise_halfReward = 6
         preflop_raise_fullReward = 6
-        preflop_allin_reward = 5
-        preflop_call_reward = 6
-        preflop_fold_penalty = 10
+        preflop_allin_reward = 100
+        preflop_call_reward = 20
+        preflop_fold_penalty = 100
 
 
         # Rewards using odds:

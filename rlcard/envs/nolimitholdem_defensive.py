@@ -62,12 +62,14 @@ class NolimitholdemEnv(Env):
         hand = state['hand']
         my_chips = state['my_chips']
         all_chips = state['all_chips']
+        odds = state['odds']
         cards = public_cards + hand
         idx = [self.card2index[card] for card in cards]
-        obs = np.zeros(54)
+        obs = np.zeros(55)
         obs[idx] = 1
         obs[52] = float(my_chips)
         obs[53] = float(np.max(all_chips))
+        obs[54] = float(odds)
         extracted_state['obs'] = obs
 
         extracted_state['raw_obs'] = state
