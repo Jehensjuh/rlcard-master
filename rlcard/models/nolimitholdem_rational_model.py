@@ -1,10 +1,16 @@
-''' Limit Hold 'em rule model
-'''
 import rlcard
 from rlcard.models.model import Model
+from enum import Enum
 
-class NolimitholdemRationalAgent(object):
-    ''' Limit Hold 'em Rule agent version 1
+class Action(Enum):
+    FOLD = 0
+    CHECK_CALL = 1
+    RAISE_HALF_POT = 2
+    RAISE_POT = 3
+    ALL_IN = 4
+
+class NolimitholdemRationalAgentV1(object):
+    ''' No-limit Texas Hold'em Rational Agent version 1
     '''
 
     def __init__(self):
@@ -17,49 +23,43 @@ class NolimitholdemRationalAgent(object):
             state (dict): Raw state from the game
 
         Returns:
-            action (str): Predicted action
+            action (Action): Predicted action
         '''
         legal_actions = state['raw_legal_actions']
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = 'fold'
+        action = Action.FOLD  # Default action is FOLD
         odds = state['odds']
         stage = state['stage']['name']
-        # When having only 2 hand cards at the game start, choose fold to drop terrible cards:
-        # Acceptable hand cards:
-        # Pairs
-        # AK, AQ, AJ, AT
-        # A9s, A8s, ... A2s(s means flush)
-        # KQ, KJ, QJ, JT
-        # Fold all hand types except those mentioned above to save money
+
+        # When having only 2 hand cards at the game start, choose fold to drop terrible cards
         if stage == 'PREFLOP':
-            action = 'CHECK_CALL'
+            action = Action.CHECK_CALL
         else:
             if odds >= 0.800:
-                action = 'ALL_IN'
-            if odds >= 0.700:
-                action = 'RAISE_FULL_POT'
-            if odds >= 0.600:
-                action = 'RAISE_HALF_POT'
-            if odds >= 0.400:
-                action = 'CHECK_CALL'
-            if odds < 0.400:
-                action = 'FOLD'
-        #return action
-        if action in legal_actions:
-            return action
-        else:
-            if action == 'RAISE_HALF_POT':
-                return 'CHECK_CALL'
-            elif action == 'RAISE_FULL_POT':
-                return 'CHECK_CALL'
-            elif action == 'ALL_IN':
-                return 'CHECK_CALL'
-            elif action == 'CHECK_CALL':
-                return 'FOLD'
+                action = Action.ALL_IN
+            elif odds >= 0.700:
+                action = Action.RAISE_POT
+            elif odds >= 0.600:
+                action = Action.RAISE_HALF_POT
+            elif odds >= 0.400:
+                action = Action.CHECK_CALL
             else:
-                return action
+                action = Action.FOLD
+
+        if action not in legal_actions:
+            # Adjust actions if they are not legal
+            if action == Action.RAISE_HALF_POT:
+                action = Action.CHECK_CALL
+            elif action == Action.RAISE_POT:
+                action = Action.CHECK_CALL
+            elif action == Action.ALL_IN:
+                action = Action.CHECK_CALL
+            elif action == Action.CHECK_CALL:
+                action = Action.FOLD
+
+        return action
 
     def eval_step(self, state):
         ''' Step for evaluation. The same to step
@@ -67,7 +67,7 @@ class NolimitholdemRationalAgent(object):
         return self.step(state), []
 
 class LimitholdemRuleModelV1(Model):
-    ''' Limitholdem Rule Model version 1
+    ''' Limit Texas Hold'em Rule Model version 1
     '''
 
     def __init__(self):
@@ -75,12 +75,12 @@ class LimitholdemRuleModelV1(Model):
         '''
         env = rlcard.make('no-limit-holdem')
 
-        rule_agent = NolimitholdemRationalAgent()
+        rule_agent = NolimitholdemRationalAgentV1()
         self.rule_agents = [rule_agent for _ in range(env.num_players)]
 
     @property
     def agents(self):
-        ''' Get a list of agents for each position in a the game
+        ''' Get a list of agents for each position in the game
 
         Returns:
             agents (list): A list of agents
@@ -92,7 +92,7 @@ class LimitholdemRuleModelV1(Model):
 
     @property
     def use_raw(self):
-        ''' Indicate whether use raw state and action
+        ''' Indicate whether to use raw state and action
 
         Returns:
             use_raw (boolean): True if using raw state and action
