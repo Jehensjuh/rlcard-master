@@ -3,7 +3,7 @@
 import rlcard
 from rlcard.models.model import Model
 
-class NolimitholdemRuleAgent(object):
+class NolimitholdemRuleDefensiveAgent(object):
     ''' Limit Hold 'em Rule agent version 1
     '''
 
@@ -36,15 +36,15 @@ class NolimitholdemRuleAgent(object):
         if stage == 'PREFLOP':
             action = 'CHECK_CALL'
         else:
-            if odds >= 0.800:
+            if odds >= 1:
                 action = 'ALL_IN'
-            if odds >= 0.700:
+            if odds >= 0.900:
                 action = 'RAISE_FULL_POT'
-            if odds >= 0.600:
+            if odds >= 0.800:
                 action = 'RAISE_HALF_POT'
-            if odds >= 0.400:
+            if odds >= 0.500:
                 action = 'CHECK_CALL'
-            if odds < 0.400:
+            if odds < 0.500:
                 action = 'FOLD'
         #return action
         if action in legal_actions:
@@ -73,9 +73,9 @@ class LimitholdemRuleModelV1(Model):
     def __init__(self):
         ''' Load pretrained model
         '''
-        env = rlcard.make('no-limit-holdem')
+        env = rlcard.make('no-limit-holdem-defensive')
 
-        rule_agent = NolimitholdemRuleAgent()
+        rule_agent = NolimitholdemRuleDefensiveAgent()
         self.rule_agents = [rule_agent for _ in range(env.num_players)]
 
     @property
