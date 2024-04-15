@@ -347,12 +347,12 @@ class NolimitholdemGame(Game):
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= 10 * fold_penalty * p.timesFolded
                 rewards[idx] -= 10 * allin_reward * p.timesAllIn
-                rewards[idx] -= 10(
+                rewards[idx] -= 10*(
                             raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full)
             elif odds[idx +1] < 0.300:  # fold odds
                 rewards[idx] += 10 * fold_penalty * p.timesFolded
                 rewards[idx] -= 10 * allin_reward * p.timesAllIn
-                rewards[idx] -= 10(raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full)
+                rewards[idx] -= 10*(raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full)
             # preflop rewards
             rewards[idx] += preflop_call_reward * p.amountOfTimesCalledPreflop + preflop_raise_halfReward * p.amountOfTimesRaised_halfPreflop + preflop_raise_fullReward * p.amountOfTimesRaised_fullPreflop
             rewards[idx] -= (preflop_fold_penalty * p.amountOfTimesFoldedPreflop + preflop_allin_reward * p.amountOfTimesAllinPreflop)
