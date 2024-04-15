@@ -1,5 +1,13 @@
 import rlcard
 from rlcard.models.model import Model
+from enum import Enum
+
+class Action(Enum):
+    FOLD = 0
+    CHECK_CALL = 1
+    RAISE_HALF_POT = 2
+    RAISE_POT = 3
+    ALL_IN = 4
 
 class UnlimitedHoldemRuleAgentV1(object):
     ''' Unlimited Texas Hold'em Rule agent version 1
@@ -21,21 +29,21 @@ class UnlimitedHoldemRuleAgentV1(object):
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = 0  # Default action is FOLD
+        action = Action.FOLD.value  # Default action is FOLD
 
         # Calculate the strength of the hand
         hand_strength = calculate_hand_strength(hand, public_cards)
 
         # Decide actions based on the strength of the hand and current betting round
-        if 0 in legal_actions:
+        if Action.FOLD in legal_actions:
             if hand_strength == 'HIGH_PAIR' or hand_strength == 'TWO_PAIR' or hand_strength == 'THREE_OF_A_KIND':
-                action = 3  # Raise with strong hands
+                action = Action.RAISE_POT  # Raise with strong hands
             elif hand_strength == 'STRAIGHT' or hand_strength == 'FLUSH' or hand_strength == 'FULL_HOUSE' or hand_strength == 'FOUR_OF_A_KIND':
-                action = 4  # Go all-in with very strong hands
-            elif 3 in legal_actions:
-                action = 3  # Raise if possible
+                action = Action.ALL_IN  # Go all-in with very strong hands
+            elif Action.RAISE_POT.value in legal_actions:
+                action = Action.RAISE_POT  # Raise if possible
             else:
-                action = 1  # Otherwise, check or call
+                action = Action.CHECK_CALL  # Otherwise, check or call
 
         return action
 
