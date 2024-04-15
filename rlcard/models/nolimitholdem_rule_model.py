@@ -27,30 +27,51 @@ class UnlimitedHoldemRuleAgentV1(object):
         '''
 
         legal_actions = state['raw_legal_actions']
-        actions = []
+        actions = {}
         for action in legal_actions:
-            actions.append(action)
+            if action.name == 'FOLD':
+                actions['FOLD'] = action
+            elif action.name == 'CHECK_CALL':
+                actions['CHECK_CALL'] = action
+            elif action.name == 'RAISE_HALF_POT':
+                actions['RAISE_HALF_POT'] = action
+            elif action.name == 'RAISE_POT':
+                actions['RAISE_POT'] = action
+            elif action.name == 'ALL_IN':
+                actions['ALL_IN'] = action
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = actions[0]  # Default action is FOLD
+        action = actions['FOLD']  # Default action is FOLD
 
 
         # Calculate the strength of the hand
         hand_strength = calculate_hand_strength(hand, public_cards)
 
         # Decide actions based on the strength of the hand and current betting round
-        if actions[0] in legal_actions:
+        if actions['FOLD'] in legal_actions:
             if hand_strength == 'HIGH_PAIR' or hand_strength == 'TWO_PAIR' or hand_strength == 'THREE_OF_A_KIND':
-                action = actions[2]  # Raise with strong hands
+                action = actions['RAISE_POT']  # Raise with strong hands
             elif hand_strength == 'STRAIGHT' or hand_strength == 'FLUSH' or hand_strength == 'FULL_HOUSE' or hand_strength == 'FOUR_OF_A_KIND':
-                action = actions[3]  # Go all-in with very strong hands
+                action = actions['ALL_IN']  # Go all-in with very strong hands
             elif Action.RAISE_POT.value in legal_actions:
-                action = actions[2]  # Raise if possible
+                action = actions['RAISE_HALF_POT']  # Raise if possible
             else:
-                action = actions[1]  # Otherwise, check or call
+                action = actions['CHECK_CALL']  # Otherwise, check or call
+
+        if action not in legal_actions:
+            # Adjust actions if they are not legal
+            if action == actions['RAISE_HALF_POT']:
+                action = actions['CHECK_CALL']
+            elif action == actions['RAISE_POT']:
+                action = actions['CHECK_CALL']
+            elif action == actions['ALL_IN']:
+                action = actions['CHECK_CALL']
+            elif action == actions['CHECK_CALL']:
+                action = actions['FOLD']
 
         return action
+
 
     def eval_step(self, state):
         ''' Step for evaluation. The same to step

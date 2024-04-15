@@ -24,32 +24,46 @@ class NolimitholdemRationalAgentV1(object):
         action = 0  # Default action is FOLD
         odds = state['odds']
         stage = state['stage'].name
+        actions = {}
+        for action in legal_actions:
+            if action.name == 'FOLD':
+                actions['FOLD'] = action
+            elif action.name == 'CHECK_CALL':
+                actions['CHECK_CALL'] = action
+            elif action.name == 'RAISE_HALF_POT':
+                actions['RAISE_HALF_POT'] = action
+            elif action.name == 'RAISE_POT':
+                actions['RAISE_POT'] = action
+            elif action.name == 'ALL_IN':
+                actions['ALL_IN'] = action
+
 
         # When having only 2 hand cards at the game start, choose fold to drop terrible cards
         if stage == 'PREFLOP':
-            action = 1  # CHECK_CALL
+            if actions['CHECK_CALL'] in legal_actions:
+                action = actions['CHECK_CALL']
         else:
             if odds >= 0.800:
-                action = 4  # ALL_IN
+                action = actions['ALL_IN']
             elif odds >= 0.700:
-                action = 3  # RAISE_POT
+                action = actions['RAISE_POT']
             elif odds >= 0.600:
-                action = 2  # RAISE_HALF_POT
+                action = actions['RAISE_HALF_POT']
             elif odds >= 0.400:
-                action = 1  # CHECK_CALL
+                action = actions['CHECK_CALL']
             else:
-                action = 0  # FOLD
+                action = actions['FOLD']
 
         if action not in legal_actions:
             # Adjust actions if they are not legal
-            if action == 2:  # RAISE_HALF_POT
-                action = 1  # CHECK_CALL
-            elif action == 3:  # RAISE_POT
-                action = 1  # CHECK_CALL
-            elif action == 4:  # ALL_IN
-                action = 1  # CHECK_CALL
-            elif action == 1:  # CHECK_CALL
-                action = 0  # FOLD
+            if action == actions['RAISE_HALF_POT']:  # RAISE_HALF_POT
+                action = actions['CHECK_CALL']  # CHECK_CALL
+            elif action == actions['RAISE_POT']:  # RAISE_POT
+                action = actions['CHECK_CALL']  # CHECK_CALL
+            elif action == actions['ALL_IN']:  # ALL_IN
+                action = actions['CHECK_CALL']  # CHECK_CALL
+            elif action == actions['CHECK_CALL']:  # CHECK_CALL
+                action = actions['FOLD']  # FOLD
 
         return action
 
