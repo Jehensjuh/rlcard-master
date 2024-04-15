@@ -23,7 +23,7 @@ class NolimitholdemRationalAgentV1(object):
         public_cards = state['public_cards']
         action = 0  # Default action is FOLD
         odds = state['odds']
-        stage = state['stage']['name']
+        stage = state['stage'].name
 
         # When having only 2 hand cards at the game start, choose fold to drop terrible cards
         if stage == 'PREFLOP':
