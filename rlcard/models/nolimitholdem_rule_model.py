@@ -1,10 +1,8 @@
-''' Limit Hold 'em rule model
-'''
 import rlcard
 from rlcard.models.model import Model
 
-class NolimitholdemRuleAgent(object):
-    ''' Limit Hold 'em Rule agent version 1
+class UnlimitedHoldemRuleAgent(object):
+    ''' Unlimited Texas Hold'em Rule agent version 1
     '''
 
     def __init__(self):
@@ -23,51 +21,69 @@ class NolimitholdemRuleAgent(object):
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = 'fold'
-        odds = state['odds']
-        stage = state['stage']['name']
-        # When having only 2 hand cards at the game start, choose fold to drop terrible cards:
-        # Acceptable hand cards:
-        # Pairs
-        # AK, AQ, AJ, AT
-        # A9s, A8s, ... A2s(s means flush)
-        # KQ, KJ, QJ, JT
-        # Fold all hand types except those mentioned above to save money
-        if stage == 'PREFLOP':
-            action = 'CHECK_CALL'
-        else:
-            if odds >= 0.800:
-                action = 'ALL_IN'
-            if odds >= 0.700:
-                action = 'RAISE_FULL_POT'
-            if odds >= 0.600:
-                action = 'RAISE_HALF_POT'
-            if odds >= 0.400:
-                action = 'CHECK_CALL'
-            if odds < 0.400:
-                action = 'FOLD'
-        #return action
-        if action in legal_actions:
-            return action
-        else:
-            if action == 'RAISE_HALF_POT':
-                return 'CHECK_CALL'
-            elif action == 'RAISE_FULL_POT':
-                return 'CHECK_CALL'
-            elif action == 'ALL_IN':
-                return 'CHECK_CALL'
-            elif action == 'CHECK_CALL':
-                return 'FOLD'
+        action = 'FOLD'
+
+        # Calculate the strength of the hand
+        hand_strength = calculate_hand_strength(hand, public_cards)
+
+        # Decide actions based on the strength of the hand and current betting round
+        if 'FOLD' in legal_actions:
+            if hand_strength == 'HIGH_PAIR' or hand_strength == 'TWO_PAIR' or hand_strength == 'THREE_OF_A_KIND':
+                action = 'RAISE_FULL_POT'  # Raise with strong hands
+            elif hand_strength == 'STRAIGHT' or hand_strength == 'FLUSH' or hand_strength == 'FULL_HOUSE' or hand_strength == 'FOUR_OF_A_KIND':
+                action = 'ALL_IN'  # Go all-in with very strong hands
+            elif 'RAISE_FULL_POT' in legal_actions:
+                action = 'RAISE_FULL_POT'  # Raise if possible
             else:
-                return action
+                action = 'CHECK_CALL'  # Otherwise, check or call
+
+        return action
 
     def eval_step(self, state):
         ''' Step for evaluation. The same to step
         '''
         return self.step(state), []
 
-class LimitholdemRuleModelV1(Model):
-    ''' Limitholdem Rule Model version 1
+# Helper function to calculate hand strength
+def calculate_hand_strength(hand, public_cards):
+    all_cards = hand + public_cards
+    all_ranks = [card[1] for card in all_cards]
+    all_suits = [card[0] for card in all_cards]
+
+    if len(set(all_suits)) == 1:  # Flush
+        return 'FLUSH'
+    elif is_straight(all_ranks):  # Straight
+        return 'STRAIGHT'
+    elif len(set(all_ranks)) == 2:
+        counts = [all_ranks.count(rank) for rank in set(all_ranks)]
+        if 4 in counts:  # Four of a Kind
+            return 'FOUR_OF_A_KIND'
+        elif 3 in counts:  # Full House
+            return 'FULL_HOUSE'
+    elif len(set(all_ranks)) == 3:
+        counts = [all_ranks.count(rank) for rank in set(all_ranks)]
+        if 3 in counts:  # Three of a Kind
+            return 'THREE_OF_A_KIND'
+        elif counts.count(2) == 2:  # Two Pair
+            return 'TWO_PAIR'
+    elif len(set(all_ranks)) == 4 and max(all_ranks) == 'A':
+        return 'HIGH_PAIR'
+    return 'HIGH_CARD'
+
+# Helper function to check if the cards form a straight
+def is_straight(ranks):
+    rank_values = {'2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'T': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14}
+    sorted_ranks = sorted([rank_values[rank] for rank in ranks])
+    straight = False
+    if len(sorted_ranks) >= 5:
+        for i in range(len(sorted_ranks) - 4):
+            if sorted_ranks[i] + 4 == sorted_ranks[i + 4]:
+                straight = True
+                break
+    return straight
+
+class UnlimitedHoldemRuleModelV1(Model):
+    ''' Unlimited Texas Hold'em Rule Model version 1
     '''
 
     def __init__(self):
@@ -75,7 +91,7 @@ class LimitholdemRuleModelV1(Model):
         '''
         env = rlcard.make('no-limit-holdem')
 
-        rule_agent = NolimitholdemRuleAgent()
+        rule_agent = UnlimitedHoldemRuleAgentV1()
         self.rule_agents = [rule_agent for _ in range(env.num_players)]
 
     @property
