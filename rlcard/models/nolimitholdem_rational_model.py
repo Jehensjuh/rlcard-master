@@ -23,41 +23,41 @@ class NolimitholdemRationalAgentV1(object):
             state (dict): Raw state from the game
 
         Returns:
-            action (Action): Predicted action
+            action (int): Predicted action as a numerical value
         '''
         legal_actions = state['raw_legal_actions']
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = Action.FOLD  # Default action is FOLD
+        action = Action.FOLD.value  # Default action is FOLD
         odds = state['odds']
         stage = state['stage']['name']
 
         # When having only 2 hand cards at the game start, choose fold to drop terrible cards
         if stage == 'PREFLOP':
-            action = Action.CHECK_CALL
+            action = Action.CHECK_CALL.value
         else:
             if odds >= 0.800:
-                action = Action.ALL_IN
+                action = Action.ALL_IN.value
             elif odds >= 0.700:
-                action = Action.RAISE_POT
+                action = Action.RAISE_POT.value
             elif odds >= 0.600:
-                action = Action.RAISE_HALF_POT
+                action = Action.RAISE_HALF_POT.value
             elif odds >= 0.400:
-                action = Action.CHECK_CALL
+                action = Action.CHECK_CALL.value
             else:
-                action = Action.FOLD
+                action = Action.FOLD.value
 
         if action not in legal_actions:
             # Adjust actions if they are not legal
-            if action == Action.RAISE_HALF_POT:
-                action = Action.CHECK_CALL
-            elif action == Action.RAISE_POT:
-                action = Action.CHECK_CALL
-            elif action == Action.ALL_IN:
-                action = Action.CHECK_CALL
-            elif action == Action.CHECK_CALL:
-                action = Action.FOLD
+            if action == Action.RAISE_HALF_POT.value:
+                action = Action.CHECK_CALL.value
+            elif action == Action.RAISE_POT.value:
+                action = Action.CHECK_CALL.value
+            elif action == Action.ALL_IN.value:
+                action = Action.CHECK_CALL.value
+            elif action == Action.CHECK_CALL.value:
+                action = Action.FOLD.value
 
         return action
 
