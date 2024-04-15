@@ -1,13 +1,5 @@
 import rlcard
 from rlcard.models.model import Model
-from enum import Enum
-
-class Action(Enum):
-    FOLD = 0
-    CHECK_CALL = 1
-    RAISE_HALF_POT = 2
-    RAISE_POT = 3
-    ALL_IN = 4
 
 class NolimitholdemRationalAgentV1(object):
     ''' No-limit Texas Hold'em Rational Agent version 1
@@ -29,35 +21,35 @@ class NolimitholdemRationalAgentV1(object):
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = Action.FOLD.value  # Default action is FOLD
+        action = 0  # Default action is FOLD
         odds = state['odds']
         stage = state['stage']['name']
 
         # When having only 2 hand cards at the game start, choose fold to drop terrible cards
         if stage == 'PREFLOP':
-            action = Action.CHECK_CALL.value
+            action = 1  # CHECK_CALL
         else:
             if odds >= 0.800:
-                action = Action.ALL_IN.value
+                action = 4  # ALL_IN
             elif odds >= 0.700:
-                action = Action.RAISE_POT.value
+                action = 3  # RAISE_POT
             elif odds >= 0.600:
-                action = Action.RAISE_HALF_POT.value
+                action = 2  # RAISE_HALF_POT
             elif odds >= 0.400:
-                action = Action.CHECK_CALL.value
+                action = 1  # CHECK_CALL
             else:
-                action = Action.FOLD.value
+                action = 0  # FOLD
 
         if action not in legal_actions:
             # Adjust actions if they are not legal
-            if action == Action.RAISE_HALF_POT.value:
-                action = Action.CHECK_CALL.value
-            elif action == Action.RAISE_POT.value:
-                action = Action.CHECK_CALL.value
-            elif action == Action.ALL_IN.value:
-                action = Action.CHECK_CALL.value
-            elif action == Action.CHECK_CALL.value:
-                action = Action.FOLD.value
+            if action == 2:  # RAISE_HALF_POT
+                action = 1  # CHECK_CALL
+            elif action == 3:  # RAISE_POT
+                action = 1  # CHECK_CALL
+            elif action == 4:  # ALL_IN
+                action = 1  # CHECK_CALL
+            elif action == 1:  # CHECK_CALL
+                action = 0  # FOLD
 
         return action
 

@@ -23,27 +23,27 @@ class UnlimitedHoldemRuleAgentV1(object):
             state (dict): Raw state from the game
 
         Returns:
-            action (int): Predicted action as a numerical value
+            action (str): Predicted action
         '''
         legal_actions = state['raw_legal_actions']
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = Action.FOLD.value  # Default action is FOLD
+        action = Action.FOLD.name  # Default action is FOLD
 
         # Calculate the strength of the hand
         hand_strength = calculate_hand_strength(hand, public_cards)
 
         # Decide actions based on the strength of the hand and current betting round
-        if Action.FOLD.value in legal_actions:
+        if Action.FOLD.name in legal_actions:
             if hand_strength == 'HIGH_PAIR' or hand_strength == 'TWO_PAIR' or hand_strength == 'THREE_OF_A_KIND':
-                action = Action.RAISE_POT.value  # Raise with strong hands
+                action = Action.RAISE_POT.name  # Raise with strong hands
             elif hand_strength == 'STRAIGHT' or hand_strength == 'FLUSH' or hand_strength == 'FULL_HOUSE' or hand_strength == 'FOUR_OF_A_KIND':
-                action = Action.ALL_IN.value  # Go all-in with very strong hands
-            elif Action.RAISE_POT.value in legal_actions:
-                action = Action.RAISE_POT.value  # Raise if possible
+                action = Action.ALL_IN.name  # Go all-in with very strong hands
+            elif Action.RAISE_POT.name in legal_actions:
+                action = Action.RAISE_POT.name  # Raise if possible
             else:
-                action = Action.CHECK_CALL.value  # Otherwise, check or call
+                action = Action.CHECK_CALL.name  # Otherwise, check or call
 
         return action
 
