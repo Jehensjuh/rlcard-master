@@ -29,7 +29,7 @@ class UnlimitedHoldemRuleAgentV1(object):
         state = state['raw_obs']
         hand = state['hand']
         public_cards = state['public_cards']
-        action = Action.FOLD.value  # Default action is FOLD
+        action = Action.FOLD  # Default action is FOLD
 
         # Calculate the strength of the hand
         hand_strength = calculate_hand_strength(hand, public_cards)
