@@ -9,7 +9,7 @@ def calculate_semiknown_oddstable(indices):
     odds_table = {}
     for i in range(len(indices)):
         for j in range(i + 1, len(indices)):
-            odds = calc.calculate(None, True, 1, None, indices[i], indices[j], '?', '?', False)
+            odds = calc.calculate(None, True, 1, None, [indices[i], indices[j], '?', '?'], False)
             odds_table[(indices[i], indices[j])] = odds
 
 
@@ -20,7 +20,7 @@ def calculate_known_oddstable(indices):
         for j in range(i + 1, len(indices)):
             for k in range(len(indices)):
                 for l in range(k + 1, len(indices)):
-                    odds = calc.calculate(None, True, 1, None, indices[i], indices[j], indices[k], indices[l], False)
+                    odds = calc.calculate(None, True, 1, None, [indices[i], indices[j], indices[k], indices[l]], False)
                     odds_table[(indices[i], indices[j], indices[k], indices[l])] = odds
 
 
