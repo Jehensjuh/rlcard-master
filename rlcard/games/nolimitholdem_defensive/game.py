@@ -237,9 +237,10 @@ class NolimitholdemGame(Game):
 
         chips = [self.players[i].in_chips for i in range(self.num_players)]
         legal_actions = self.get_legal_actions()
-        self.odds = self.calculate_odds()
-        state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions,
-                                                               self.odds[player_id + 1])
+        # self.odds = self.calculate_odds()
+        # state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions,
+        #                                                        self.odds[player_id + 1])
+        state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot
@@ -277,8 +278,20 @@ class NolimitholdemGame(Game):
         """
         hands = [p.hand + self.public_cards if p.status in (PlayerStatus.ALIVE, PlayerStatus.ALLIN) else None for p in self.players]
         chips_payoffs = self.judger.judge_game(self.players, hands)
+        for i in range(len(chips_payoffs)):
+            if chips_payoffs[i] < 0.00:
+                chips_payoffs[i] = chips_payoffs * 10
         return chips_payoffs
 
+    def get_reward(self):
+        """
+        Get the reward of the game
+
+        This player will value the chips it's lost more than the chips it's won
+        """
+        hands = [p.hand + self.public_cards if p.status in (PlayerStatus.ALIVE, PlayerStatus.ALLIN) else None for p in self.players]
+        chips_payoffs = self.judger.judge_game(self.players, hands)
+        return chips_payoffs
 
     def safe_reward(self):
 

@@ -27,7 +27,6 @@ class NolimitholdemGame(Game):
         """Initialize the class no limit holdem Game"""
         super().__init__(allow_step_back, num_players)
 
-
         self.np_random = np.random.RandomState()
 
         # small blind and big blind
@@ -240,10 +239,10 @@ class NolimitholdemGame(Game):
 
         chips = [self.players[i].in_chips for i in range(self.num_players)]
         legal_actions = self.get_legal_actions()
-        self.odds = self.calculate_odds()
-        state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions,
-                                                               self.odds[player_id+1])
-
+        # self.odds = self.calculate_odds()
+        # state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions,
+        #                                                        self.odds[player_id+1])
+        state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot
@@ -284,6 +283,22 @@ class NolimitholdemGame(Game):
         chips_payoffs = self.judger.judge_game(self.players, hands)
         return chips_payoffs
 
+    def get_reward(self):
+        """
+        Return the reward of the game
+        The aggressive player will care more about the chips he wins than the chips he loses
+        """
+        # hands = [p.hand + self.public_cards if p.status in (PlayerStatus.ALIVE, PlayerStatus.ALLIN) else None for p in
+        #          self.players]
+        # chips he wins or loses:
+        # chips_payoffs = self.judger.judge_game(self.players, hands)
+        # reward that makes agent care more about the chips he wins rather than the chips he loses
+        chips_payoffs = [2 , -2]
+        for i in range(len(chips_payoffs)):
+            if chips_payoffs[i] > 0.00:
+                chips_payoffs[i] = chips_payoffs[i] * 10
+        return chips_payoffs
+
     def risky_reward(self):
         """
         Reward function to incentivize raising more often and folding less often
@@ -303,7 +318,6 @@ class NolimitholdemGame(Game):
         # Reward is (amount of big blinds one or lost + all rewards based on odds and what was done)*relative amount bet
         # This is to encourage bets and raises when the odds are good and to discourage folding
 
-
         # odds shows: [ties player1 player2]
         odds = [float(odds_value) for odds_value in self.odds]
 
@@ -321,40 +335,46 @@ class NolimitholdemGame(Game):
         preflop_call_reward = 20
         preflop_fold_penalty = 500
 
-
         # Rewards using odds:
         for idx, p in enumerate(self.players):
-            if odds[idx +1] >= 0.700: # allin odds
+            if odds[idx + 1] >= 0.700:  # allin odds
                 rewards[idx] += allin_reward * p.timesAllIn
-                rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full
+                rewards[
+                    idx] += raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= 10 * fold_penalty * p.timesFolded
                 rewards[idx] = rewards[idx] * relative_bets[idx]
-            elif odds[idx +1] >= 0.500: # raise full odds
-                rewards[idx] += raise_halfReward * p.amountOfTimesRaised_half + 10 * raise_fullReward * p.amountOfTimesRaised_full
+            elif odds[idx + 1] >= 0.500:  # raise full odds
+                rewards[
+                    idx] += raise_halfReward * p.amountOfTimesRaised_half + 10 * raise_fullReward * p.amountOfTimesRaised_full
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= 10 * fold_penalty * p.timesFolded
                 rewards[idx] -= 10 * allin_reward * p.timesAllIn
-                rewards[idx] = rewards[idx] * (relative_bets[idx]/((p.timesAllIn*allin_reward)+1))
-            elif odds[idx +1] >= 0.400: # raise half odds
+                rewards[idx] = rewards[idx] * (relative_bets[idx] / ((p.timesAllIn * allin_reward) + 1))
+            elif odds[idx + 1] >= 0.400:  # raise half odds
                 rewards[idx] += 10 * raise_halfReward * p.amountOfTimesRaised_half
                 rewards[idx] -= 10 * raise_fullReward * p.amountOfTimesRaised_full
                 rewards[idx] += call_reward * p.amountOfTimesCalled
                 rewards[idx] -= 10 * fold_penalty * p.timesFolded
                 rewards[idx] -= 10 * allin_reward * p.timesAllIn
-                rewards[idx] = rewards[idx] * (relative_bets[idx]/((p.amountOfTimesRaised_full+p.amountOfTimesAlin*allin_reward)+1))
-            elif odds[idx +1] >= 0.100: # call odds
+                rewards[idx] = rewards[idx] * (relative_bets[idx] / (
+                            (p.amountOfTimesRaised_full + p.amountOfTimesAlin * allin_reward) + 1))
+            elif odds[idx + 1] >= 0.100:  # call odds
                 rewards[idx] += 10 * call_reward * p.amountOfTimesCalled
                 rewards[idx] -= 10 * fold_penalty * p.timesFolded
                 rewards[idx] -= 10 * allin_reward * p.timesAllIn
-                rewards[idx] -= 10 * (raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full)
-            elif odds[idx +1] <= 0.100: # fold odds
+                rewards[idx] -= 10 * (
+                            raise_halfReward * p.amountOfTimesRaised_half + raise_fullReward * p.amountOfTimesRaised_full)
+            elif odds[idx + 1] <= 0.100:  # fold odds
                 rewards[idx] += fold_penalty * p.timesFolded
                 rewards[idx] -= 10 * allin_reward * p.timesAllIn
             # Preflop rewards
-            rewards[idx] += preflop_call_reward * p.amountOfTimesCalledPreflop + preflop_raise_halfReward * p.amountOfTimesRaised_halfPreflop + preflop_raise_fullReward * p.amountOfTimesRaised_fullPreflop
-            rewards[idx] -= (preflop_fold_penalty * p.amountOfTimesFoldedPreflop + preflop_allin_reward * p.amountOfTimesAllinPreflop)
+            rewards[
+                idx] += preflop_call_reward * p.amountOfTimesCalledPreflop + preflop_raise_halfReward * p.amountOfTimesRaised_halfPreflop + preflop_raise_fullReward * p.amountOfTimesRaised_fullPreflop
+            rewards[idx] -= (
+                        preflop_fold_penalty * p.amountOfTimesFoldedPreflop + preflop_allin_reward * p.amountOfTimesAllinPreflop)
         return rewards
+
 
     @staticmethod
     def get_num_actions():

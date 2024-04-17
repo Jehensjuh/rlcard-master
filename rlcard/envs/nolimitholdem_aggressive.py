@@ -27,6 +27,7 @@ class NolimitholdemEnv(Env):
         super().__init__(config)
         self.actions = Action
         self.state_shape = [[54] for _ in range(self.num_players)]
+        # self.state_shape = [[55] for _ in range(self.num_players)]
         self.action_shape = [None for _ in range(self.num_players)]
         # for raise_amount in range(1, self.game.init_chips+1):
         #     self.actions.append(raise_amount)
@@ -62,14 +63,15 @@ class NolimitholdemEnv(Env):
         hand = state['hand']
         my_chips = state['my_chips']
         all_chips = state['all_chips']
-        odds = state['odds']
+        # odds = state['odds']
         cards = public_cards + hand
         idx = [self.card2index[card] for card in cards]
-        obs = np.zeros(55)
+        # obs = np.zeros(55)
+        obs = np.zeros(54)
         obs[idx] = 1
         obs[52] = float(my_chips)
         obs[53] = float(np.max(all_chips))
-        obs[54] = float(odds)
+        # obs[54] = float(odds)
         extracted_state['obs'] = obs
 
         extracted_state['raw_obs'] = state
@@ -93,8 +95,8 @@ class NolimitholdemEnv(Env):
         Returns:
            payoffs (list): list of payoffs
         '''
-        # return np.array(self.game.get_payoffs())
-        return np.array(self.game.risky_reward())
+        return np.array(self.game.get_reward())
+        # return np.array(self.game.risky_reward())
 
     def _decode_action(self, action_id):
         ''' Decode the action for applying to the game

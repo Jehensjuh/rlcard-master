@@ -104,7 +104,8 @@ class DQNAgent(object):
 
 
         # update stateshape:
-        extra_obs_size = 1
+        # extra_obs_size = 1
+        extra_obs_size = 0
         updated_state_shape = [state_shape[0] + extra_obs_size]
 
         # Total timesteps
