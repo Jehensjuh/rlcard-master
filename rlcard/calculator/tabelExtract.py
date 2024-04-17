@@ -24,6 +24,7 @@ def calculate_semiknown_basedonSuit(indices):
     diamond_indices = [idx for idx in indices if idx.startswith(diamond)]
     club = suits[3]
     club_indices = [idx for idx in indices if idx.startswith(club)]
+    print("calculate odds with same suits")
     for i in range(len(spade_indices)):
         for j in range(i + 1, len(spade_indices)):
             # Calculate odds for pairs within the same suit
@@ -42,6 +43,7 @@ def calculate_semiknown_basedonSuit(indices):
         for j in range(i+1, len(club_indices)):
             odds_table[(club_indices[i], club_indices[j])] = odds_table[(spade_indices[i], spade_indices[j])]
     # calculate the odds for all combinations that have suit S and suit H
+    print("calculate odds with different suits")
     for i in range(len(spade_indices)):
         for j in range(len(heart_indices)):
             odds = calc.calculate(None, True, 1, None, [spade_indices[i], heart_indices[j], '?', '?'], False)
