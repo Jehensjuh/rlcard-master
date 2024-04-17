@@ -21,9 +21,13 @@ def calculate_known_oddstable(indices):
         for j in range(i + 1, len(indices)):
             for k in range(len(indices)):
                 for l in range(k + 1, len(indices)):
-                    odds = calc.calculate(None, True, 1, None, [indices[i], indices[j], indices[k], indices[l]], False)
-                    odds_table[(indices[i], indices[j], indices[k], indices[l])] = odds
-                    print(f'{indices[i]}, {indices[j]}, {indices[k]}, {indices[l]}: {odds}')
+                    # Ensure all entered cards are unique
+                    if len(set([indices[i], indices[j], indices[k], indices[l]])) == 4:
+                        odds = calc.calculate(None, True, 1, None, [indices[i], indices[j], indices[k], indices[l]], False)
+                        odds_table[(indices[i], indices[j], indices[k], indices[l])] = odds
+                        print(f'{indices[i]}, {indices[j]}, {indices[k]}, {indices[l]}: {odds}')
+    return odds_table
+
 
 if __name__ == '__main__':
     cards = rlcard.utils.utils.init_standard_deck()  # Initialize a standard deck of 52 cards
