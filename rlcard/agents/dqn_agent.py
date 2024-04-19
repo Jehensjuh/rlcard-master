@@ -96,6 +96,7 @@ class DQNAgent(object):
         self.num_actions = num_actions
         self.train_every = train_every
         self.state_shape = state_shape
+        self.rlLoss = 0
         # Torch device
         if device is None:
             self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
@@ -227,6 +228,7 @@ class DQNAgent(object):
         state_batch = np.array(state_batch)
 
         loss = self.q_estimator.update(state_batch, action_batch, target_batch)
+        self.rlLoss = loss
         print('\rINFO - Step {}, rl-loss: {}'.format(self.total_t, loss), end='')
 
         # Update the target estimator
@@ -242,6 +244,8 @@ class DQNAgent(object):
             self.save_checkpoint(self.save_path)
             print("\nINFO - Saved model checkpoint.")
 
+    def getRlLoss(self):
+        return self.rlLoss
 
     def feed_memory(self, state, action, reward, next_state, legal_actions, done):
         ''' Feed transition to memory
