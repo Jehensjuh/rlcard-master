@@ -236,10 +236,10 @@ def plot_curve(csv_path, save_path, algorithm):
         ys = []
         for row in reader:
             xs.append(int(row['episode']))
-            ys.append(float(row['reward']))
+            ys.append(float(row['loss']))
         fig, ax = plt.subplots()
         ax.plot(xs, ys, label=algorithm)
-        ax.set(xlabel='episode', ylabel='reward')
+        ax.set(xlabel='episode', ylabel='rl-loss')
         ax.legend()
         ax.grid()
 
