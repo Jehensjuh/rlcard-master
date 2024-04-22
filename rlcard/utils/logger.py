@@ -23,7 +23,7 @@ class Logger(object):
 
         self.txt_file = open(self.txt_path, 'w')
         self.csv_file = open(self.csv_path, 'w')
-        fieldnames = ['episode', 'reward']
+        fieldnames = ['episode', 'loss']
         self.writer = csv.DictWriter(self.csv_file, fieldnames=fieldnames)
         self.writer.writeheader()
 
@@ -44,11 +44,11 @@ class Logger(object):
             episode (int): the episode of the current point
             reward (float): the reward of the current point
         '''
-        self.writer.writerow({'episode': episode, 'reward': reward})
+        self.writer.writerow({'episode': episode, 'loss': reward})
         print('')
         self.log('----------------------------------------')
         self.log('  episode      |  ' + str(episode))
-        self.log('  reward       |  ' + str(reward))
+        self.log('  loss       |  ' + str(reward))
         self.log('----------------------------------------')
 
     def __exit__(self, type, value, traceback):
