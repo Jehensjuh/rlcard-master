@@ -242,7 +242,6 @@ def plot_curve(csv_path, save_path, algorithm):
         ax.set(xlabel='episode', ylabel='rl-loss')
         ax.legend()
         ax.grid()
-
         save_dir = os.path.dirname(save_path)
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
