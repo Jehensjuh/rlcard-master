@@ -81,11 +81,11 @@ class Logger(object):
             episode (int): the episode of the current point
             reward (float): the reward of the current point
         '''
-        self.rewardWriter.writerow({'episode': episode, 'loss': reward})
+        self.rewardWriter.writerow({'episode': episode, 'reward': reward})
         print('')
         self.log('----------------------------------------')
         self.log('  episode      |  ' + str(episode))
-        self.log('  loss       |  ' + str(reward))
+        self.log('  reward       |  ' + str(reward))
         self.log('----------------------------------------')
     def __exit__(self, type, value, traceback):
         if self.txt_path is not None:
