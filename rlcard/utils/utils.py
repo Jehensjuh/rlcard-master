@@ -263,7 +263,7 @@ def plot_reward_curve(csv_path, save_path, algorithm):
             ys.append(float(row['reward']))
         fig, ax = plt.subplots()
         ax.plot(xs, ys, label=algorithm)
-        ax.set(xlabel='episode', ylabel='rl-loss')
+        ax.set(xlabel='episode', ylabel='reward')
         ax.legend()
         ax.grid()
         save_dir = os.path.dirname(save_path)
