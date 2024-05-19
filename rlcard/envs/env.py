@@ -235,7 +235,6 @@ class Env(object):
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         self.game.np_random = self.np_random
-        print(seed)
         return seed
 
     def _extract_state(self, state):
