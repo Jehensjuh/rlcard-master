@@ -26,14 +26,12 @@ class NolimitholdemEnv(Env):
     ''' Limitholdem Environment
     '''
 
-    def __init__(self, config, oddson=False):
+    def __init__(self, config):
         ''' Initialize the Limitholdem environment
         '''
         self.name = 'no-limit-holdem'
-        if oddson:
-            self.default_game_config = ODDS_GAME_CONFIG
-        else:
-            self.default_game_config = DEFAULT_GAME_CONFIG
+
+        self.default_game_config = DEFAULT_GAME_CONFIG
         self.game = Game()
         super().__init__(config)
         self.actions = Action
@@ -53,6 +51,12 @@ class NolimitholdemEnv(Env):
             encoded_action_list (list): return encoded legal action list (from str to int)
         '''
         return self.game.get_legal_actions()
+
+    def _setGameConfig(self, odds):
+        if odds:
+            self.game.configure(ODDS_GAME_CONFIG)
+        else:
+            self.game.configure(DEFAULT_GAME_CONFIG)
 
     def _extract_state(self, state):
         ''' Extract the state representation from state dictionary for agent
