@@ -287,7 +287,6 @@ class NolimitholdemGame(Game):
         hands = [p.hand + self.public_cards if p.status in (PlayerStatus.ALIVE, PlayerStatus.ALLIN) else None for p in self.players]
         chips_payoffs = self.judger.judge_game(self.players, hands)
         payoffs = np.array(chips_payoffs) / self.big_blind
-        print(payoffs[0])
         return payoffs
 
 
