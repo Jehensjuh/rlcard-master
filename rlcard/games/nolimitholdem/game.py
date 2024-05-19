@@ -1,3 +1,5 @@
+import json
+import os
 from enum import Enum, IntEnum
 
 import numpy as np
@@ -37,13 +39,20 @@ class NolimitholdemGame(Game):
         # If None, the dealer will be randomly chosen
         self.dealer_id = None
 
+        self.oddson = False
+
         self.odds = []
+        file_path = os.path.join(os.path.dirname(__file__), 'classification_table.json')
+        with open(file_path, 'r') as file:
+            self.table = json.load(file)
+            self.table = {eval(key): value for key, value in self.table.items()}
 
     def configure(self, game_config):
         """
         Specify some game specific parameters, such as number of players, initial chips, and dealer id.
         If dealer_id is None, he will be randomly chosen
         """
+        self.oddson = game_config['oddsareon']
         self.num_players = game_config['game_num_players']
         # must have num_players length
         self.init_chips = [game_config['chips_for_each']] * game_config["game_num_players"]
@@ -202,11 +211,11 @@ class NolimitholdemGame(Game):
             public_cards_s = [c.get_index() for c in public_cards]
 
         # pre-flop
-        # if stage == stage.PREFLOP:
-        #     odds = pc.calculate(None, True, 1, None, [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()],
-        #                          False)
+        if stage == stage.PREFLOP:
+            odds[1] = self.table[(player_hands[0][0].get_index(), player_hands[0][1].get_index())]
+            odds[2] = self.table[(player_hands[1][0].get_index(), player_hands[1][1].get_index())]
         # flop
-        if stage == stage.FLOP:
+        elif stage == stage.FLOP:
            odds = pc.calculate(public_cards_s, True, 1, None,
                                 [player_hands[0][0].get_index(), player_hands[0][1].get_index(), player_hands[1][0].get_index(),  player_hands[1][1].get_index()], False)
         # turn
@@ -240,7 +249,11 @@ class NolimitholdemGame(Game):
         # self.odds = [0, 4, 10]
         # self.odds = self.calculate_odds()
         # state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds[player_id+1])
-        state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
+        if self.oddson:
+            self.odds = self.calculate_odds()
+            state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds)
+        else:
+            state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot

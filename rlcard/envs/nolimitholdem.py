@@ -12,6 +12,13 @@ DEFAULT_GAME_CONFIG = {
     'game_num_players': 2,
     'chips_for_each': 100,
     'dealer_id': None,
+    'oddsareon': False,
+}
+ODDS_GAME_CONFIG = {
+    'game_num_players': 2,
+    'chips_for_each': 100,
+    'dealer_id': None,
+    'oddsareon': True,
 }
 
 
@@ -19,11 +26,14 @@ class NolimitholdemEnv(Env):
     ''' Limitholdem Environment
     '''
 
-    def __init__(self, config):
+    def __init__(self, config, oddson=False):
         ''' Initialize the Limitholdem environment
         '''
         self.name = 'no-limit-holdem'
-        self.default_game_config = DEFAULT_GAME_CONFIG
+        if oddson:
+            self.default_game_config = ODDS_GAME_CONFIG
+        else:
+            self.default_game_config = DEFAULT_GAME_CONFIG
         self.game = Game()
         super().__init__(config)
         self.actions = Action
