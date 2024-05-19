@@ -55,3 +55,7 @@ register(
     env_id='no-limit-holdem-defensive',
     entry_point='rlcard.envs.nolimitholdem_defensive:NolimitholdemEnv',
 )
+register(
+    env_id='no-limit-holdem-with-odds',
+    entry_point='rlcard.envs.nolimitholdem_odds:NolimitholdemEnv',
+)

@@ -81,6 +81,7 @@ class Env(object):
         self.timestep += 1
         # Record the action for human interface
         self.action_recorder.append((self.get_player_id(), action, self.game.stage))
+        # self.action_recorder.append((self.get_player_id(), action))
         next_state, player_id = self.game.step(action)
 
         return self._extract_state(next_state), player_id
@@ -135,6 +136,12 @@ class Env(object):
         '''
         trajectories = [[] for _ in range(self.num_players)]
         state, player_id = self.reset()
+        # print("gameseed")
+        # print("game randomstate")
+        # print(self.game.np_random)
+        # print(self.game.np_random.get_state())
+
+
 
         # Loop to play the game
         trajectories[player_id].append(state)
@@ -228,6 +235,7 @@ class Env(object):
     def seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
         self.game.np_random = self.np_random
+        print(seed)
         return seed
 
     def _extract_state(self, state):
