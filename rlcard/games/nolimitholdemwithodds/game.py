@@ -1,7 +1,6 @@
+from enum import Enum, IntEnum
 import json
 import os
-from enum import Enum, IntEnum
-
 import numpy as np
 from copy import deepcopy
 from rlcard.games.limitholdem import Game
@@ -209,8 +208,8 @@ class NolimitholdemGame(Game):
 
         # pre-flop
         if stage == stage.PREFLOP:
-            odds[0] = self.table[(player_hands[0][0].get_index(), player_hands[0][1].get_index())]
-            odds[1] = self.table[(player_hands[1][0].get_index(), player_hands[1][1].get_index())]
+            odds[1] = self.table[(player_hands[0][0].get_index(), player_hands[0][1].get_index())]
+            odds[2] = self.table[(player_hands[1][0].get_index(), player_hands[1][1].get_index())]
         # flop
         elif stage == stage.FLOP:
            odds = pc.calculate(public_cards_s, True, 1, None,
@@ -244,9 +243,9 @@ class NolimitholdemGame(Game):
             if player.player_id != player_id:
                 hole_cards.append(player.hand)
         # self.odds = [0, 4, 10]
+        # self.odds = self.calculate_odds()
         self.odds = self.calculate_odds()
         state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds[player_id+1])
-        # state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot
