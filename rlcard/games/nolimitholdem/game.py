@@ -251,7 +251,7 @@ class NolimitholdemGame(Game):
         # state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds[player_id+1])
         if self.oddson:
             self.odds = self.calculate_odds()
-            state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds)
+            state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds[player_id+1])
         else:
             state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
