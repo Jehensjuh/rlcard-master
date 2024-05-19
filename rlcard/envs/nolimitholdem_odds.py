@@ -22,7 +22,7 @@ class NolimitholdemEnv(Env):
     def __init__(self, config):
         ''' Initialize the Limitholdem environment
         '''
-        self.name = 'no-limit-holdem'
+        self.name = 'no-limit-holdem-with-odds'
         self.default_game_config = DEFAULT_GAME_CONFIG
         self.game = Game()
         super().__init__(config)
