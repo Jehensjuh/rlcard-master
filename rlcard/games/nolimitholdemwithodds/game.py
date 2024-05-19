@@ -1,4 +1,5 @@
 import json
+import os
 from enum import Enum, IntEnum
 
 import numpy as np
@@ -39,9 +40,10 @@ class NolimitholdemGame(Game):
         self.dealer_id = None
 
         self.odds = []
-        with open('classification_table.json', 'r') as file:
+        file_path = os.path.join(os.path.dirname(__file__), 'classification_table.json')
+        with open(file_path, 'r') as file:
             self.table = json.load(file)
-            self.table = {eval(key): value for key, value in self.items()}
+            self.table = {eval(key): value for key, value in self.table.items()}
 
     def configure(self, game_config):
         """
