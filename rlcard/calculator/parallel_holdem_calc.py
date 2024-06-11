@@ -36,7 +36,7 @@ def run_simulation(hole_cards, num, exact, given_board, deck, verbose):
     # 1) winner_list: number of times each player wins a hand
     # 2) result_histograms: a list for each player that shows the number of
     #    times each type of poker hand (e.g. flush, straight) was gotten
-    num_processes = multiprocessing.cpu_count()
+    num_processes = (multiprocessing.cpu_count()-1)
     num_poker_hands = len(holdem_functions.hand_rankings)
     num_histograms = num_processes * num_players * num_poker_hands
     winner_list = multiprocessing.Array('i', num_processes * (num_players + 1))
@@ -113,7 +113,7 @@ def unknown_simulation(new_hole_cards):
                                  result_histograms)
     # Write results to parallel data structure for future tabulation
     proc_name = multiprocessing.current_process().name
-    proc_id = int(proc_name.split("-")[-1]) % multiprocessing.cpu_count()
+    proc_id = int(proc_name.split("-")[-1]) % (multiprocessing.cpu_count()-1)
     for index, result in enumerate(winner_list):
         combined_winner_list[proc_id * (num_players + 1) + index] += result
     for histogram_index, histogram in enumerate(result_histograms):
@@ -124,7 +124,7 @@ def unknown_simulation(new_hole_cards):
 
 def find_winner(generate_boards, deck, hole_cards, num, board_length,
                 given_board, winner_list, result_histograms):
-    num_processes = multiprocessing.cpu_count()
+    num_processes = (multiprocessing.cpu_count()-1)
     # Create threadpool and use it to perform hand detection over all boards
     pool = multiprocessing.Pool(processes=num_processes,
                                 initializer=simulation_init,
@@ -155,7 +155,7 @@ def simulation(remaining_board):
     # Extract process id from the name of the current process
     # Names are of the format: PoolWorker-1 - PoolWorker-n
     proc_name = multiprocessing.current_process().name
-    proc_id = int(proc_name.split("-")[-1]) % multiprocessing.cpu_count()
+    proc_id = int(proc_name.split("-")[-1]) % (multiprocessing.cpu_count()-1)
     # Create results data structure which tracks results of comparisons
     result_list = []
     for _ in range(num_players):
