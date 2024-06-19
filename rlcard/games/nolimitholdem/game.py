@@ -246,14 +246,14 @@ class NolimitholdemGame(Game):
         for player in self.players:
             if player.player_id != player_id:
                 hole_cards.append(player.hand)
-        # self.odds = [0, 4, 10]
+        self.odds = [0, 0, 0]
         # self.odds = self.calculate_odds()
         # state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds[player_id+1])
         if self.oddson:
             self.odds = self.calculate_odds()
             state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds[player_id+1])
         else:
-            state = self.players[player_id].get_state(self.public_cards, self.dealer.pot, legal_actions)
+            state = self.players[player_id].newGet_state_givenOdds(self.public_cards, self.dealer.pot, legal_actions, self.odds[player_id+1])
         state['stakes'] = [self.players[i].remained_chips for i in range(self.num_players)]
         state['current_player'] = self.game_pointer
         state['pot'] = self.dealer.pot
