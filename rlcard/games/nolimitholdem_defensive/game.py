@@ -293,7 +293,7 @@ class NolimitholdemGame(Game):
             if payoffs[i] < 0.00:
                 payoffs[i] = payoffs[i] * 5
             else:
-                payoffs[i] = payoffs[i] * [1 + 0.5*payoffs[i]]
+                payoffs[i] = payoffs[i] * (1 + 0.5*payoffs[i])
         return payoffs
 
     def safe_reward(self):
