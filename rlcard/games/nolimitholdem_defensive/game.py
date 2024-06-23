@@ -291,11 +291,7 @@ class NolimitholdemGame(Game):
         payoffs = np.array(chips_payoffs) / self.big_blind
         for i in range(len(payoffs)):
             if payoffs[i] < 0.00:
-                payoffs[i] = payoffs[i] * 10
-            elif payoffs[i] < 2.0:
-                payoffs[i] = payoffs[i] * 2
-            else:
-                payoffs[i] = payoffs[i] * (1 + 0*payoffs[i])
+                payoffs[i] = payoffs[i] * 5
         return payoffs
 
     def safe_reward(self):
