@@ -63,8 +63,8 @@ class NolimitholdemGame(Game):
                 (dict): The first state of the game
                 (int): Current player's id
         """
-        if self.dealer_id is None:
-            self.dealer_id = self.np_random.randint(0, self.num_players)
+        #if self.dealer_id is None:
+        self.dealer_id = self.np_random.randint(0, self.num_players)
 
         # Initialize a dealer that can deal cards
         self.dealer = Dealer(self.np_random)
@@ -293,7 +293,7 @@ class NolimitholdemGame(Game):
         payoffs = np.array(chips_payoffs) / self.big_blind
         for i in range(len(payoffs)):
             if payoffs[i] > 0.00:
-                payoffs[i] = payoffs[i] * 4
+                payoffs[i] = payoffs[i] * 10
         return payoffs
 
     def risky_reward(self):
